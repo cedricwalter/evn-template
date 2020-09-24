@@ -2,6 +2,13 @@
 
 PoC with Kafka of some simple microservices, trying to iron out possible technical issues
 
+# Open Items
+
+* filter item from topic "Nachweis" by type. Alternative is to create more topics
+* redirect logs to splunk (forwarder, other)
+
+
+
 # 3rd party
 
 ## start PostgresSQL
@@ -64,16 +71,20 @@ There is no one template fit all...
 ```
 -Dextensions="smallrye-reactive-messaging-kafka,quarkus-jsonb"
 ```
-* smallrye-reactive-messaging-kafka: required for Kafka support [kafka](https://quarkus.io/guides/kafka)
+* smallrye-reactive-messaging-kafka: required for Kafka support [kafka](https://quarkus.io/guides/kafka) / [smallrye](https://smallrye.io/smallrye-reactive-messaging/smallrye-reactive-messaging/2.2/index.html)
 * quarkus-jsonb: kafka serializer for POJO
+* logging: (built in) [logging](https://quarkus.io/guides/logging)
 
 ### Data / Query service microservice
 ```
--Dextensions="smallrye-reactive-messaging-kafka,quarkus-jsonb,reactive-pg-client"
+-Dextensions="smallrye-reactive-messaging-kafka,quarkus-jsonb,reactive-pg-client,kafka-panache-quickstart"
 ```
-* smallrye-reactive-messaging-kafka: required for Kafka support [kafka](https://quarkus.io/guides/kafka)
-* quarkus-jsonb: kafka serializer 
-* reactive-pg-client
+* smallrye-reactive-messaging-kafka: required for Kafka support [kafka](https://quarkus.io/guides/kafka) / [smallrye](https://smallrye.io/smallrye-reactive-messaging/smallrye-reactive-messaging/2.2/index.html)
+* quarkus-jsonb: kafka serializer: to read from topic and deserialize/serialize [jsonb](https://quarkus.io/guides/rest-json)
+* reactive-pg-client: postgress support [postgress](https://quarkus.io/guides/reactive-sql-clients)
+* kafka-panache-quickstart: hibernate support [panache](https://quarkus.io/guides/hibernate-orm-panache)
+* logging: (built in) [logging](https://quarkus.io/guides/logging)
+
 
 ### Connector microservices  
 ```
@@ -82,8 +93,10 @@ There is no one template fit all...
 For example in microservice connecting to the outside or acting as endpoint
 * camel-quarkus-soap: SOAP client (optional)
 * resteasy-jsonb: to expose EVN object instances over Rest HTTP in the JSON format to external system [logging](https://quarkus.io/guides/logging)
+* logging: (built in) [logging](https://quarkus.io/guides/logging)
 
-Add more extensions  [Search](https://code.quarkus.io/)
+### Add more extensions  
+[Search](https://code.quarkus.io/)
 
 ### Logging
 https://quarkus.io/guides/logging

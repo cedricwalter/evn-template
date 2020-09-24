@@ -1,4 +1,4 @@
-package ch.helvetia.evn.kafka.pojo;
+package ch.helvetia.evn.pojo;
 
 import io.quarkus.kafka.client.serialization.JsonbDeserializer;
 

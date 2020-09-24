@@ -1,6 +1,6 @@
-package ch.helvetia.evn.kafka;
+package ch.helvetia.evn.microservices.adapter;
 
-import ch.helvetia.evn.kafka.pojo.Nachweis;
+import ch.helvetia.evn.pojo.Nachweis;
 import io.smallrye.reactive.messaging.annotations.Broadcast;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Outgoing;
@@ -9,15 +9,15 @@ import javax.enterprise.context.ApplicationScoped;
 import org.jboss.logging.Logger;
 
 @ApplicationScoped
-public class CLSAdapter {
+public class CLSAdapterService {
 
-    private static final Logger LOG = Logger.getLogger(CLSAdapter.class);
+    private static final Logger LOG = Logger.getLogger(CLSAdapterService.class);
 
     @Incoming("nachweis")  // source
     @Outgoing("nachweis") // sink
     @Broadcast  // Indicates that the item are dispatched to all subscribers
     public Nachweis process(Nachweis nachweis) {
-        if ("submit-cls".equals(nachweis.getType())) {
+        if ("submit-cls".equals(nachweis.type)) {
             LOG.info(String.format("submit ", nachweis.stammNummer ));
 
             // validate
