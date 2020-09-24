@@ -47,7 +47,7 @@ mvn io.quarkus:quarkus-maven-plugin:1.8.1.Final:create \
 ```
 
 ## Extensions
-There is no template fit all...
+There is no one template fit all...
 ### Generic microservices 
 ```
 -Dextensions="smallrye-reactive-messaging-kafka,quarkus-jsonb"
@@ -57,7 +57,7 @@ There is no template fit all...
 
 ### Data / Query service microservice
 ```
--Dextensions="smallrye-reactive-messaging-kafka,quarkus-jsonb"
+-Dextensions="smallrye-reactive-messaging-kafka,quarkus-jsonb,reactive-pg-client"
 ```
 * smallrye-reactive-messaging-kafka: required for Kafka support [kafka](https://quarkus.io/guides/kafka)
 * quarkus-jsonb: kafka serializer 
