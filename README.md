@@ -2,6 +2,18 @@
 
 PoC with Kafka of some simple microservices, trying to iron out possible technical issues
 
+# 3rd party
+
+## start PostgresSQL
+```
+# customize the config my-postgres.conf
+$ # run 
+$ docker run -d --name evn -v "$PWD/my-postgres.conf":/etc/postgresql/postgresql.conf \ 
+         -e POSTGRES_PASSWORD=mysecretpassword postgres \
+         -c 'config_file=/etc/postgresql/postgresql.conf'
+         -p 8090:8080
+``` 
+    
 ## start kafka
 create  docker-compose.yaml
 ```
