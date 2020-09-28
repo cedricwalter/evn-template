@@ -7,18 +7,26 @@ PoC with Kafka of some simple microservices, trying to iron out possible technic
 seems to not be supported by  [kafka](https://quarkus.io/guides/kafka) but we could fork their code and force it to work...
 
 ## N topics (N = # events type), concrete or generic deserializer
-Consumer need to know which topics he need to subscribe 
-* + self documenting in code: Incoming = event that trigger (=EVNÜbermitteln), Consumer write in Outgoing (=EVNErfasst)
-* - slightly more complex
+* Consumer need to know which topics he need to subscribe 
+* Self documenting in code: Incoming = event that trigger (=EVNÜbermitteln), Consumer write in Outgoing (=EVNErfasst)
+* Alightly more complex
+* As many topics or channel as events, a temporary list
+    * Nachweiss-bestellung-erhalten
+    * Person-als-halter-gefunden
+    * Person-als-lenker-gefunden
+    * Fahrzeug-standort-erfasst
+    * EVN-uebermittelt
+    * EVN-erstellt
+    * ....
 
 # What does this project contains
 
 * how to define a consumer listening to any topic Incoming/Outgoing
 * how to write a controller (Get/Post) and run queries
-* testing of microservices
-* how to write a POJO and its deserializer
+* testing of microservices: mock, spy, injection and integration test (going to controller)
+* how to write a POJO and its deserializer/serializer
 * how to register topics, deserializer in application.properties
-* how to define a database connector and use Panachen as ORM
+* how to define a database connector and use Panache as ORM
 
 # Open Items
 
