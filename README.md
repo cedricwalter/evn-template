@@ -24,10 +24,10 @@ Consumer need to know which topics he need to subscribe
 
 * first vertical slice with multiple topics
 * redirect logs to splunk (forwarder, other)
-* SOAP 
+* SOAP
   * [client not supported in Quarkus yet](https://github.com/quarkusio/quarkus/issues/3479)
   * [CXF wont make it into quarkus core](https://github.com/quarkusio/quarkus/issues/4005) but [community extension](https://github.com/shumonsharif/quarkus-cxf)
-  * Other Wax
+  * Other method
   * [workaround to be tested](https://stackoverflow.com/questions/60218884/consume-soap-service-using-quarkus)
   * if we DON'T use native (GraalVM) [CXF Client should works fine in JVM mode](https://cxf.apache.org/docs/how-do-i-develop-a-client.html)
    
