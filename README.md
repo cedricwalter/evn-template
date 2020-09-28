@@ -32,8 +32,9 @@ open a terminal in this project and run:
 
 ```docker-compose up```
 
-kafka run and postgres also, visit http://localhost:8080, use server:db username: postgres pwd: admin
+kafka run and postgres also, visit http://localhost:8090, use server:db username: postgres pwd: admin
 
+**don't use 8080 for db admin as Quarkus will listen on port 8080 by default**
 
 ## How to create a template
 ```
