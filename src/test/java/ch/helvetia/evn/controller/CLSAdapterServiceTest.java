@@ -5,6 +5,7 @@ import ch.helvetia.evn.pojo.EVN;
 import ch.helvetia.evn.pojo.Nachweis;
 import io.quarkus.test.junit.QuarkusMock;
 import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.junit.mockito.InjectSpy;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -17,7 +18,7 @@ import static org.hamcrest.Matchers.notNullValue;
 @QuarkusTest
 public class CLSAdapterServiceTest {
 
-    @Inject
+    @Inject // or with spy @InjectSpy then Mockito.verify(service, Mockito.times(1)).process();
     CLSAdapterService service;
 
     @Test
