@@ -2,60 +2,38 @@
 
 PoC with Kafka of some simple microservices, trying to iron out possible technical issues
 
+# Design decisions
+## 1 topic in/out and generic event 
+seems to not be supported by  [kafka](https://quarkus.io/guides/kafka) but we could fork their code and force it to work...
+
+## N topics (N = # events type), concrete or generic deserializer
+Consumer need to know which topics he need to subscribe 
+* + self documenting in code: Incoming = event that trigger (=EVNÜbermitteln), Consumer write in Outgoing (=EVNErfasst)
+* - slightly more complex
+
+# What does this project contains
+
+* how to define a consumer listening to any topic Incoming/Outgoing
+* how to write a controller (Get/Post) and run queries
+* testing of microservices
+* how to write a POJO and its deserializer
+* how to register topics, deserializer in application.properties
+* how to define a database connector and use Panache
+
 # Open Items
 
-* filter item from topic "Nachweis" by type. Alternative is to create more topics
+* first vertical slice with multiple topics
 * redirect logs to splunk (forwarder, other)
 
+# 3rd party 
+## start kafka + postgres
 
+open a terminal in this project and run:
 
-# 3rd party
+```docker-compose up```
 
-## start PostgresSQL
-```
-# customize the config my-postgres.conf
-$ # run 
-$ docker run -d --name evn -v "$PWD/my-postgres.conf":/etc/postgresql/postgresql.conf \ 
-         -e POSTGRES_PASSWORD=mysecretpassword postgres \
-         -c 'config_file=/etc/postgresql/postgresql.conf'
-         -p 8090:8080
-``` 
-    
-## start kafka
-create  docker-compose.yaml
-```
-version: '2'
+kafka run and postgres also, visit http://localhost:8080, use server:db username: postgres pwd: admin
 
-services:
-
-  zookeeper:
-    image: strimzi/kafka:0.11.3-kafka-2.1.0
-    command: [
-      "sh", "-c",
-      "bin/zookeeper-server-start.sh config/zookeeper.properties"
-    ]
-    ports:
-      - "2181:2181"
-    environment:
-      LOG_DIR: /tmp/logs
-
-  kafka:
-    image: strimzi/kafka:0.11.3-kafka-2.1.0
-    command: [
-      "sh", "-c",
-      "bin/kafka-server-start.sh config/server.properties --override listeners=$${KAFKA_LISTENERS} --override advertised.listeners=$${KAFKA_ADVERTISED_LISTENERS} --override zookeeper.connect=$${KAFKA_ZOOKEEPER_CONNECT}"
-    ]
-    depends_on:
-      - zookeeper
-    ports:
-      - "9092:9092"
-    environment:
-      LOG_DIR: "/tmp/logs"
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-```
-run docker-compose up
 
 ## How to create a template
 ```
@@ -84,7 +62,6 @@ There is no one template fit all...
 * reactive-pg-client: postgress support [postgress](https://quarkus.io/guides/reactive-sql-clients)
 * kafka-panache-quickstart: hibernate support [panache](https://quarkus.io/guides/hibernate-orm-panache)
 * logging: (built in) [logging](https://quarkus.io/guides/logging)
-
 
 ### Connector microservices  
 ```

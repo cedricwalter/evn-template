@@ -13,8 +13,8 @@ public class CLSAdapterService {
 
     private static final Logger LOG = Logger.getLogger(CLSAdapterService.class);
 
-    @Incoming("nachweis")  // source
-    @Outgoing("nachweis") // sink
+    @Incoming("nachweis-validiert")  // source
+    @Outgoing("nachweis-uebermittelt") // sink
     @Broadcast  // Indicates that the item are dispatched to all subscribers
     public Nachweis process(Nachweis nachweis) {
         if ("submit-cls".equals(nachweis.type)) {
