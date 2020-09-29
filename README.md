@@ -30,6 +30,7 @@ seems to not be supported by  [kafka](https://quarkus.io/guides/kafka) but we co
 
 # Open Items
 
+* authentificatiob + autorisation -> expecting HCP running guidelines + code
 * first vertical slice with multiple topics
 * redirect logs to splunk (forwarder, other)
 * SOAP
